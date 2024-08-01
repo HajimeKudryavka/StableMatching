@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>安定マッチング</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
+</head>
+<body>
+  <h1>DAアルゴリズムを使用した安定マッチング</h1>
+  <section>
+    <h2>安定マッチングとは？</h2>
+    <p>安定マッチングは、配属希望者と配属先の間で互いに最も適したペアを見つけるアルゴリズムです。このプロセスにより、全員が可能な限り満足する配属結果が得られます。</p>
+  </section>
+  <section>
+    <h2>DAアルゴリズムについて</h2>
+    <p>DA（Deferred Acceptance）アルゴリズムは、提案する側が希望順位に基づいて提案を行い、受け入れ側がそれを受け入れるかどうかを判断する方法です。このプロセスは、すべての提案が安定するまで繰り返されます。</p>
+    <p>提案者を選択する理由は、提案者が希望順位を指定して提案を行うためです。提案者が変わると結果も変わる可能性があります。</p>
+  </section>
+  <section>
+    <h2>使用方法</h2>
+    <ol>
+      <li>応募者数と配属先数を入力します。</li>
+      <li>提案者を選択します（応募者または配属先）。</li>
+      <li>各応募者と配属先の名前を入力します。</li>
+      <li>希望順位の入力モードを選択します（テキスト入力モード、並べ替えモード）。</li>
+      <li>「送信」ボタンをクリックすると、マッチング結果が表示されます。</li>
+    </ol>
+  </section>
+  <form id="matching-form">
+    <div>
+      <label for="num-applicants">応募者数:</label>
+      <input type="number" id="num-applicants" name="num-applicants" min="2" max="50" required>
+    </div>
+    <div>
+      <label for="num-employers">配属先数:</label>
+      <input type="number" id="num-employers" name="num-employers" min="2" max="50" required>
+    </div>
+    <div class="proposer-selection">
+      <label>提案者:</label>
+      <div>
+        <input type="radio" id="proposer-applicants" name="proposer" value="applicants" checked>
+        <label for="proposer-applicants">応募者</label>
+        <input type="radio" id="proposer-employers" name="proposer" value="employers">
+        <label for="proposer-employers">配属先</label>
+      </div>
+    </div>
+    <div>
+      <label>希望順位の入力モード:</label>
+      <div>
+        <button type="button" id="text-mode" class="mode-button">テキスト入力モード</button>
+        <button type="button" id="drag-mode" class="mode-button">並べ替えモード</button>
+      </div>
+    </div>
+    <div id="input-section">
+      <!-- Dynamic input fields will be added here by JavaScript -->
+    </div>
+    <button type="submit">送信</button>
+    <button type="button" id="reset-button">リセット</button>
+  </form>
+  <div id="loading" style="display:none;">計算中...</div>
+  <div id="results"></div>
+  <div id="error-message"></div>
+  <script src="script.js"></script>
+</body>
+</html>
